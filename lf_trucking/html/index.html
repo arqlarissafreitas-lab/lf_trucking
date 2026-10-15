@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LF Trucking - Sistema de Caminhoneiros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <!-- Navegação lateral -->
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">🚛 LF TRUCKING</h1>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link active" data-page="dashboard">
+                        <span class="icon">📊</span>
+                        <span class="label">Painel</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#marketplace" class="nav-link" data-page="marketplace">
+                        <span class="icon">📋</span>
+                        <span class="label">Mercado de Fretes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#deliveries" class="nav-link" data-page="deliveries">
+                        <span class="icon">🚚</span>
+                        <span class="label">Minhas Entregas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#garage" class="nav-link" data-page="garage">
+                        <span class="icon">🏢</span>
+                        <span class="label">Garagem</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#dealership" class="nav-link" data-page="dealership">
+                        <span class="icon">🏪</span>
+                        <span class="label">Concessionária</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#company" class="nav-link" data-page="company">
+                        <span class="icon">🏢</span>
+                        <span class="label">Minha Transportadora</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#finances" class="nav-link" data-page="finances">
+                        <span class="icon">💰</span>
+                        <span class="label">Finanças</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#progression" class="nav-link" data-page="progression">
+                        <span class="icon">📈</span>
+                        <span class="label">Progressão</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#certifications" class="nav-link" data-page="certifications">
+                        <span class="icon">📜</span>
+                        <span class="label">Certificações</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <button id="closeBtn" class="btn-close">Fechar [ESC]</button>
+            </div>
+        </nav>
+        
+        <!-- Conteúdo principal -->
+        <main id="main-content" class="main-content">
+            <!-- Dashboard -->
+            <section id="dashboard" class="page active">
+                <div class="page-header">
+                    <h2>Painel de Controle</h2>
+                    <p id="greeting">Bem-vindo ao LF Trucking!</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <!-- Cards de informações -->
+                    <div class="info-card">
+                        <div class="card-header">
+                            <h3>Perfil</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stat-row">
+                                <span class="stat-label">Nível:</span>
+                                <span class="stat-value" id="playerLevel">1</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Experiência:</span>
+                                <span class="stat-value" id="playerXP">0 / 1000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="xpBar" style="width: 0%"></div>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Dinheiro:</span>
+                                <span class="stat-value" id="playerMoney">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="card-header">
+                            <h3>Estatísticas</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stat-row">
+                                <span class="stat-label">Entregas Completas:</span>
+                                <span class="stat-value" id="completedDeliveries">0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Distância Percorrida:</span>
+                                <span class="stat-value" id="totalDistance">0 km</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Ganho Total:</span>
+                                <span class="stat-value" id="moneyEarned">R$ 0,00</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Avaliação:</span>
+                                <span class="stat-value" id="rating">⭐ 5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="card-header">
+                            <h3>Próxima Entrega</h3>
+                        </div>
+                        <div class="card-content" id="nextDelivery">
+                            <p class="empty-state">Nenhuma entrega em andamento</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gráficos -->
+                <div class="charts-section">
+                    <div class="chart-card">
+                        <h3>Faturamento Este Mês</h3>
+                        <div id="revenueChart" class="chart-placeholder">
+                            [Gráfico de Faturamento]
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h3>Entregas por Tipo</h3>
+                        <div id="deliveryTypeChart" class="chart-placeholder">
+                            [Gráfico de Tipos]
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Marketplace -->
+            <section id="marketplace" class="page">
+                <div class="page-header">
+                    <h2>Mercado de Fretes</h2>
+                    <p>Contratos disponíveis para transporte</p>
+                </div>
+                
+                <div class="filters">
+                    <input type="search" id="contractSearch" placeholder="Buscar contrato..." class="search-box">
+                    <select id="cargoTypeFilter" class="filter-select">
+                        <option value="">Todos os tipos</option>
+                        <option value="alimentos">Alimentos</option>
+                        <option value="construcao">Construção</option>
+                        <option value="industrial">Industrial</option>
+                    </select>
+                </div>
+                
+                <div id="contractsList" class="contracts-list">
+                    <div class="loading">Carregando contratos...</div>
+                </div>
+            </section>
+            
+            <!-- Minhas Entregas -->
+            <section id="deliveries" class="page">
+                <div class="page-header">
+                    <h2>Minhas Entregas</h2>
+                </div>
+                
+                <div id="deliveriesList" class="deliveries-list">
+                    <div class="loading">Carregando entregas...</div>
+                </div>
+            </section>
+            
+            <!-- Garagem -->
+            <section id="garage" class="page">
+                <div class="page-header">
+                    <h2>Garagem</h2>
+                </div>
+                
+                <div id="vehiclesList" class="vehicles-list">
+                    <div class="loading">Carregando veículos...</div>
+                </div>
+            </section>
+            
+            <!-- Concessionária -->
+            <section id="dealership" class="page">
+                <div class="page-header">
+                    <h2>Concessionária de Caminhões</h2>
+                </div>
+                
+                <div id="dealershipList" class="dealership-list">
+                    <div class="loading">Carregando catálogo...</div>
+                </div>
+            </section>
+            
+            <!-- Minha Transportadora -->
+            <section id="company" class="page">
+                <div class="page-header">
+                    <h2>Minha Transportadora</h2>
+                </div>
+                
+                <div id="companyContent">
+                    <button id="createCompanyBtn" class="btn btn-primary">Criar Transportadora</button>
+                </div>
+            </section>
+            
+            <!-- Finanças -->
+            <section id="finances" class="page">
+                <div class="page-header">
+                    <h2>Finanças</h2>
+                </div>
+                
+                <div id="financesContent">
+                    <div class="loading">Carregando finanças...</div>
+                </div>
+            </section>
+            
+            <!-- Progressão -->
+            <section id="progression" class="page">
+                <div class="page-header">
+                    <h2>Árvore de Habilidades</h2>
+                </div>
+                
+                <div id="skillsTree" class="skills-tree">
+                    <div class="loading">Carregando habilidades...</div>
+                </div>
+            </section>
+            
+            <!-- Certificações -->
+            <section id="certifications" class="page">
+                <div class="page-header">
+                    <h2>Certificações e Licenças</h2>
+                </div>
+                
+                <div id="certificationsList">
+                    <div class="loading">Carregando certificações...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="app.js"></script>
+    <script src="components/dashboard.js"></script>
+    <script src="components/marketplace.js"></script>
+    <script src="components/deliveries.js"></script>
+    <script src="components/garage.js"></script>
+    <script src="components/company.js"></script>
+    <script src="components/invoices.js"></script>
+</body>
+</html>
